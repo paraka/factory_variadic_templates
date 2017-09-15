@@ -60,9 +60,9 @@ void print(Args... args)
 namespace Factory
 {
     template <typename T, typename... Args> 
-    std::unique_ptr<T> create_stuff(Args... args)
+    std::unique_ptr<T> create_stuff(Args && ... args)
     {
-        return std::make_unique<T>(args...);
+        return std::make_unique<T>(std::forward<Args>(args)...);
     }
 }
 
